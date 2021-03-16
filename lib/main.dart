@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginViewModel = Provider.of<LoginViewModel>(context, listen: false);
-    //final loginViewModel = context.read();
+
 
     return MaterialApp(
       title: "HabitBoddy",

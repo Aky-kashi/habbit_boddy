@@ -40,6 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
           foregroundColor: Colors.black,
           mini: true,
           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PostPage()),
+            );
+
             // Respond to button press
           },
           child: Icon(Icons.add),
