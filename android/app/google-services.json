@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1056839514021",
+    "project_id": "habitboddy-2e24b",
+    "storage_bucket": "habitboddy-2e24b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056839514021:android:fc87b6b9a1afc71f6ada4c",
+        "android_client_info": {
+          "package_name": "com.example.habit_boddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056839514021-ukm5tv6pnu2vvom1dqrf0om488dtqm83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.habit_boddy",
+            "certificate_hash": "14629d89a22f84ddea433bc46ca82e9d10bb9151"
+          }
+        },
+        {
+          "client_id": "1056839514021-bhmjcefhfa6r85crmi07vp558uv10js6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzT_vyeMpy85rWYdRZA48tD1eGo2tZVrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056839514021-bhmjcefhfa6r85crmi07vp558uv10js6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
