@@ -1,42 +1,40 @@
-import"package:flutter/material.dart";
+import "package:flutter/material.dart";
 import 'package:habit_boddy/models/db/database_manager.dart';
 import 'package:habit_boddy/models/repositories/user_repository.dart';
+import 'package:habit_boddy/view/post/page/post_page.dart';
 import 'package:habit_boddy/view_models/login_view_model.dart';
-import"package:provider/provider.dart";
+import 'package:habit_boddy/view_models/post_view_model.dart';
+import "package:provider/provider.dart";
 import 'package:provider/single_child_widget.dart';
-
 
 List<SingleChildWidget> globalProviders = [
   ...independentModels,
   ...dependentModels,
-  ...viewModels
+  ...viewModels,
 ];
 
 List<SingleChildWidget> independentModels = [
   Provider<DatabaseManager>(
-    create: (context)=> DatabaseManager(),
+    create: (context) => DatabaseManager(),
   ),
-
 ];
-
-
 
 List<SingleChildWidget> dependentModels = [
   ProxyProvider<DatabaseManager, UserRepository>(
-      update: (context,dbManager,repo) => UserRepository(dbManager:dbManager),
+    update: (context, dbManager, repo) => UserRepository(dbManager: dbManager),
   ),
-
 ];
 
 List<SingleChildWidget> viewModels = [
   ChangeNotifierProvider<LoginViewModel>(
     create: (context) => LoginViewModel(
-      userRepository: Provider.of<UserRepository>(context, listen: false)
-    )
-
-
+        userRepository: Provider.of<UserRepository>(context, listen: false)),
+  ),
+  ChangeNotifierProvider<PostViewModel>(
+    create: (context) => PostViewModel(
+        userRepository: Provider.of<UserRepository>(context, listen: false)),
   )
 
-
 ];
+
 

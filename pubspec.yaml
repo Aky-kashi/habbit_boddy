@@ -38,7 +38,7 @@ dependencies:
   google_sign_in: ^4.5.9
   flutter_signin_button: ^1.1.0
   flutter_ui: ^0.0.9
-  provider: ^4.3.3
+  provider: ^5.0.0
   fluttertoast: ^3.1.3
   font_awesome_flutter: ^8.12.0
 
