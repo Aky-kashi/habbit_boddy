@@ -6,13 +6,19 @@ class PostPreparation extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<PostPreparation> {
+  bool _isPressed = false;
   List<Widget> list = <Widget>[
     Container(
-      child: Text( "Hello! Flutter!",
-        style: TextStyle(fontSize:32.0,
-            color: const Color(0xFF000000),
-            fontWeight: FontWeight.w200,
-            fontFamily: "Roboto"),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 70.0),
+        child: TextField(
+          decoration: InputDecoration(
+              labelText: "取り組みたいこと1",
+              hintText: "例:筋トレ",
+              hintStyle: TextStyle(color: Colors.grey[300]),
+
+          ),
+        ),
       ),
       padding: const EdgeInsets.all(10.0),
       alignment: Alignment.bottomCenter,
@@ -31,7 +37,7 @@ class _MyHomePageState extends State<PostPreparation> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('App Name'),
+        title: Center(child: new Text('HabbtBoddy')),
       ),
       body:
       SingleChildScrollView(
@@ -43,8 +49,8 @@ class _MyHomePageState extends State<PostPreparation> {
                   child: Padding(
                     padding: EdgeInsets.all(10.0),
                     child:Icon(
-                      Icons.android,
-                      size:50.0,
+                      Icons.note_add,
+                      size:30.0,
                     ),
                   )
               ),
@@ -63,18 +69,31 @@ class _MyHomePageState extends State<PostPreparation> {
   }
 
   void buttonPressed(){
-    list.add(
-      Container(
-        child: Text( "Hello! Flutter!",
-          style: TextStyle(fontSize:32.0,
-              color: const Color(0xFF000000),
-              fontWeight: FontWeight.w200,
-              fontFamily: "Roboto"),
-        ),
-        padding: const EdgeInsets.all(10.0),
-        alignment: Alignment.bottomCenter,
-      ),
-    );
+    int _counter = 2;
+    for(int _counter = 2; _counter <= 7; _counter){
+      if (_isPressed){
+        list.add(
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 70.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: "取り組みたいこと${_counter++}",
+                  hintText: "例:筋トレ",
+                  hintStyle: TextStyle(color: Colors.grey[300]),
+
+                ),
+              ),
+            ),
+            padding: const EdgeInsets.all(10.0),
+            alignment: Alignment.bottomCenter,
+          ),
+
+        );
+
+      }
+}
+
 
     setState((){
       _items = list;
