@@ -84,3 +84,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+//コメントの練習するぜええ。
