@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:habit_boddy/view/post/page/post_prepararion.dart';
+import 'package:habit_boddy/view/post/page/timer_dialog.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -77,6 +78,7 @@ class _PostPageState extends State<PostPage> {
                   border: InputBorder.none),
             ),
             Text("時間設定"),
+            Timer(),
           ],
         ),
       ),
