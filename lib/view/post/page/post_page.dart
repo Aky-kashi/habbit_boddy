@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:habit_boddy/view/common/components/drop_text.dart';
 import 'package:habit_boddy/view/post/page/post_prepararion.dart';
-import 'package:habit_boddy/view/post/page/timer_dialog.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -41,47 +41,14 @@ class _PostPageState extends State<PostPage> {
               })
         ],
         backgroundColor: Colors.amber,
+
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(40.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left:100.0),
-                  child: Text("したいこと"),
-                ),
-                Text("$_text",
-                  style: TextStyle(
-                      color:Colors.blueAccent,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-              ],
-            ),
-            DropdownButton<String>(
-              items: _list.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            ),
-            Text("詳細"),
-            TextField(
-              controller: _captionController,
-              decoration: InputDecoration(
-                  hintText: "例:腕を鍛える（ダンベル100回持ち上げる)",
-                  hintStyle: TextStyle(color: Colors.grey[300]),
-                  border: InputBorder.none),
-            ),
-            Text("時間設定"),
-            Timer(),
-          ],
-        ),
+        child: DropText(),
       ),
+
     );
   }
 

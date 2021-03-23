@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habit_boddy/view/accomplishment/page/accomplish_page.dart';
 import 'package:habit_boddy/view/login/feed/pages/feed_page.dart';
+import 'package:habit_boddy/view/menu/menu_list.dart';
 import 'package:habit_boddy/view/post/page/post_page.dart';
 import 'package:habit_boddy/view/post/page/post_prepararion.dart';
 import 'package:habit_boddy/view/profile/pages/profile_page.dart';
@@ -28,6 +29,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
+        leading: IconButton(
+          icon:Icon(Icons.menu),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuList()),
+              );}
+
+        ),
         title: Center(child: Text('Habbit Boddy')),
         actions: [
           IconButton(
@@ -75,9 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: const FaIcon(FontAwesomeIcons.search), label: "search"),
             BottomNavigationBarItem(
-                icon: const FaIcon(FontAwesomeIcons.crown), label: "target"),
-            BottomNavigationBarItem(
-                icon: const FaIcon(FontAwesomeIcons.userFriends), label: "group"),
+                icon: const FaIcon(FontAwesomeIcons.listOl), label: "ToDo"),
             BottomNavigationBarItem(
                 icon: const FaIcon(FontAwesomeIcons.user), label: "user")
           ]),
