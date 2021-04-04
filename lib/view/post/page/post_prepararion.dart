@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_boddy/view/post/page/picture_page.dart';
 
 class PostPreparation extends StatefulWidget {
   PostPreparation({Key key, this.title}) : super(key: key);
@@ -32,16 +33,6 @@ class _PostPreparation extends State {
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('タスク設定')),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.format_list_bulleted),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PostPreparation()),
-                );
-              })
-        ],
         backgroundColor: Colors.amber,
       ),
       body: Container(
@@ -92,6 +83,7 @@ class _PostPreparation extends State {
                       );
                     }),
               ),
+
             ]),
       ),
       // 投稿ボタン

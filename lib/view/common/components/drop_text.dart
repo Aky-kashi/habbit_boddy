@@ -45,17 +45,22 @@ class _DropText extends State<DropText> {
                   hintText: 'タスクを選ぶ',
                   labelText: 'タスク',
                   items: task,
+
+
+
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top:50.0),
                   child: TextField(
                     //controller: _captionController,
                     decoration: InputDecoration(
-                        hintText: "詳細、具体的な内容",
-                        hintStyle: TextStyle(color: Colors.grey[300]),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        hintText: "詳細を記入してください。",
+                        hintStyle: TextStyle(color: Colors.grey[400]),
                         border: InputBorder.none),
                   ),
-                  //Time(),
+
                 ),
               ]),
         ),

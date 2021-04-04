@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habit_boddy/view/accomplishment/page/accomplish_page.dart';
+import 'package:habit_boddy/utils/constants.dart';
 import 'package:habit_boddy/view/login/feed/pages/feed_page.dart';
 import 'package:habit_boddy/view/menu/menu_list.dart';
 import 'package:habit_boddy/view/post/page/post_page.dart';
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SearchPage(),
     AccomplishmentPage(),
     GroupPage(),
-    ProfilePage(),
+    ProfilePage(profileMode: ProfileMode.MYSELF,),
   ];
   int _currentIndex = 0;
 
@@ -29,35 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        leading: IconButton(
-          icon:Icon(Icons.menu),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MenuList()),
-              );}
-
-        ),
         title: Center(child: Text('Habbit Boddy')),
-        actions: [
-          IconButton(
-          icon:Icon(Icons.format_list_bulleted),
-          onPressed: () {
-          Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PostPreparation()),
-          );}
 
-      )
-
-
-
-        ],
         backgroundColor: Colors.amber,
       ),
-      floatingActionButton:FloatingActionButton(
+      floatingActionButton:new FloatingActionButton(
           backgroundColor: const Color(0xff03dac6),
           foregroundColor: Colors.black,
+          heroTag: "btn1",
           mini: true,
           onPressed: () {
             Navigator.push(
@@ -92,4 +72,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-//コメントの練習するぜええ。

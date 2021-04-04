@@ -1,9 +1,10 @@
-/*
-
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:habit_boddy/data_models/post.dart';
 import 'package:habit_boddy/data_models/user.dart';
 import 'package:habit_boddy/models/db/database_manager.dart';
+import 'package:habit_boddy/utils/constants.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 class PostRepository {
@@ -13,7 +14,7 @@ class PostRepository {
 
 
 
-  Future<File> pickImage(UploadType uploadType) async {
+  Future<File> pickedImage(UploadType uploadType) async {
     final imagePicker = ImagePicker();
 
     if (uploadType == UploadType.GALLERY) {
@@ -26,7 +27,7 @@ class PostRepository {
       return File(pickedImage.path);
     }
   }
-
+/*
   Future<void> post(
     User currentUser,
     File imageFile,
@@ -44,6 +45,8 @@ class PostRepository {
     );
     await dbManager.insertPost(post);
   }
+  */
+
 
   Future<List<Post>> getPosts(FeedMode feedMode, User feedUser) async {
     if (feedMode == FeedMode.FROM_FEED) {
@@ -54,6 +57,11 @@ class PostRepository {
       return dbManager.getPostsByUser(feedUser.userId);
     }
   }
+
+  post(User currentUser, String caption) {}
+
+
+  /*
 
   Future<void> updatePost(Post updatePost) async {
     return dbManager.updatePost(updatePost);
@@ -110,7 +118,8 @@ class PostRepository {
     await dbManager.deletePost(postId, imageStoragePath);
   }
 
+ */
+
 }
 
 
- */
