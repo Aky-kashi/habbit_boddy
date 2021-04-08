@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:habit_boddy/view/common/components/drop_text.dart';
+import 'package:habit_boddy/view/post/page/detail_page.dart';
+import 'package:habit_boddy/view/post/page/picture_page.dart';
 import 'package:habit_boddy/view/post/page/post_prepararion.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
@@ -41,14 +43,20 @@ class _PostPageState extends State<PostPage> {
               })
         ],
         backgroundColor: Colors.amber,
-
       ),
 
       body: Padding(
         padding: const EdgeInsets.all(40.0),
-        child: DropText(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(child: DropText(),height: 100),
+              Container(child: DetailPost(),height: 200),
+              Container(child: PicturePage(),height: 200)
+            ],
+          ),
+        ),
       ),
-
     );
   }
 

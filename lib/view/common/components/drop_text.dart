@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdownfield/dropdownfield.dart';
+import 'package:habit_boddy/view/post/page/picture_page.dart';
 
 
 
@@ -45,22 +46,6 @@ class _DropText extends State<DropText> {
                   hintText: 'タスクを選ぶ',
                   labelText: 'タスク',
                   items: task,
-
-
-
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top:50.0),
-                  child: TextField(
-                    //controller: _captionController,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: "詳細を記入してください。",
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        border: InputBorder.none),
-                  ),
-
                 ),
               ]),
         ),
