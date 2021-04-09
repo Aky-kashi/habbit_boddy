@@ -32,16 +32,6 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('投稿'),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.format_list_bulleted),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => PostPreparation()),
-                );
-              })
-        ],
         backgroundColor: Colors.amber,
       ),
 
@@ -51,6 +41,14 @@ class _PostPageState extends State<PostPage> {
           child: Column(
             children: [
               Container(child: DropText(),height: 100),
+              Container(
+                child: FloatingActionButton.extended(
+                  onPressed: ()=> PostPreparation(),
+                  backgroundColor: Colors.grey,
+                  icon: Icon(Icons.add),
+                  label: const Text('タスク追加'),
+                ),
+              ),
               Container(child: DetailPost(),height: 200),
               Container(child: PicturePage(),height: 200)
             ],
