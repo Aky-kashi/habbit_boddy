@@ -1,10 +1,15 @@
 import "package:flutter/material.dart";
+import 'package:habit_boddy/component/post/task_add_button.dart';
+import 'package:habit_boddy/utils/constants.dart';
 import 'package:habit_boddy/view/common/components/drop_text.dart';
+import 'package:habit_boddy/view/common/components/post_caption_part.dart';
 import 'package:habit_boddy/view/post/page/detail_page.dart';
 import 'package:habit_boddy/view/post/page/picture_page.dart';
 import 'package:habit_boddy/view/post/page/post_prepararion.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
+
+import 'confirm_dialog.dart';
 
 class PostPage extends StatefulWidget {
   @override
@@ -29,28 +34,60 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
+    final postViewModel = Provider.of<PostViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('投稿'),
         backgroundColor: Colors.amber,
+        actions: [
+          ElevatedButton(
+              child: Text('投稿する'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                  onPrimary: Colors.white,
+                ),
+              onPressed: () => showConfirmedDialog(
+                  context: context,
+                  title: "投稿",
+                  content: "投稿しても良いですか?",
+                  onConfirmed: (isConfirmed) {
+                    if (isConfirmed) {
+                      _post(context);
+                    }
+                  }))
+        ],
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(child: DropText(),height: 100),
+              Container(child: DropText(), height: 100),
               Container(
-                child: FloatingActionButton.extended(
-                  onPressed: ()=> PostPreparation(),
-                  backgroundColor: Colors.grey,
-                  icon: Icon(Icons.add),
-                  label: const Text('タスク追加'),
+                child: Padding(
+                  padding: const EdgeInsets.only(right:130.0),
+                  child: TaskAdd(),
                 ),
               ),
-              Container(child: DetailPost(),height: 200),
-              Container(child: PicturePage(),height: 200)
+              Container(child: Padding(
+                padding: const EdgeInsets.only(top:20.0),
+                child: DetailPost(),
+              ), height: 300),
+              Row(
+                children: [
+                  PicturePage(),
+                  postViewModel.imageFile == null
+                      ? Container()
+                      : Container(
+                    height: 60, width: 60,
+                    child: SingleChildScrollView(
+                      child: PostCaptionPart(
+                        from: PostCaptionOpenMode.FROM_POST,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+
             ],
           ),
         ),
@@ -63,8 +100,11 @@ class _PostPageState extends State<PostPage> {
     viewModel.caption = _captionController.text;
     print("caption: ${viewModel.caption}");
   }
-}
 
+  void _post(BuildContext context) {
+    final postViewModel = Provider.of<PostViewModel>(context, listen: false);
+  }
+}
 
 List<String> _list = <String>['りんご', 'オレンジ', 'みかん', 'ぶどう'];
 String _text = '';
@@ -77,10 +117,9 @@ Widget build(BuildContext context) {
           Text(
             "$_text",
             style: TextStyle(
-                color:Colors.blueAccent,
+                color: Colors.blueAccent,
                 fontSize: 30.0,
-                fontWeight: FontWeight.w500
-            ),
+                fontWeight: FontWeight.w500),
           ),
           DropdownButton<String>(
             items: _list.map<DropdownMenuItem<String>>((String value) {
@@ -91,6 +130,6 @@ Widget build(BuildContext context) {
             }).toList(),
           ),
         ],
-      )
-  );
+      ));
+
 }

@@ -2,6 +2,7 @@ import"package:flutter/material.dart";
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habit_boddy/utils/constants.dart';
 import 'package:habit_boddy/view/common/components/button_with_icon.dart';
+import 'package:habit_boddy/view/common/components/post_caption_part.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
 class PicturePage extends StatelessWidget {
@@ -28,7 +29,8 @@ class PicturePage extends StatelessWidget {
               icon: Icon(Icons.camera),
               label: const Text('カメラ'),
               heroTag: "hero3",
-            )
+            ),
+
           ],
         ));
 

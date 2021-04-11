@@ -43,6 +43,7 @@ dependencies:
   dropdownfield: 1.0.0
   cached_network_image: ^2.0.0-rc
   image_picker: any
+  reorderables: ^0.4.0
 
 dev_dependencies:
   flutter_test:

@@ -4,7 +4,7 @@ class DetailPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxLines = 5;
+    final maxLines = 10;
 
     return Container(
       margin: EdgeInsets.all(12),
@@ -12,8 +12,8 @@ class DetailPost extends StatelessWidget {
       child: TextField(
         maxLines: maxLines,
         decoration: InputDecoration(
-          hintText: "取り組む詳細を記入してください",
-          fillColor: Colors.grey[300],
+          hintText: "詳細を記入してください",
+          fillColor: Colors.grey[200],
           filled: true,
           border: InputBorder.none,
 
