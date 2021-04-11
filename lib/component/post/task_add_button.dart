@@ -9,8 +9,8 @@ class TaskAdd extends StatelessWidget {
 
         child: FloatingActionButton.extended(
             backgroundColor: Colors.grey[200],
-            icon: Icon(Icons.add),
-            label: const Text('タスク追加'),
+
+            label: const Text('追加'),
           onPressed: () {
             Navigator.push(
               context,

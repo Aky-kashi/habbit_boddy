@@ -61,17 +61,28 @@ class _PostPageState extends State<PostPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(child: DropText(), height: 100),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(right:130.0),
-                  child: TaskAdd(),
-                ),
+              Row(
+                children: [
+                  Expanded(
+                    flex:3,
+                    child: Container(child: Padding(
+                      padding: const EdgeInsets.only(left:10.0),
+                      child: DropText(),
+                    ), height: 230),
+                  ),
+                  Expanded(
+                      flex:1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom:155.0),
+                        child: TaskAdd(),
+                      )),
+                ],
               ),
+
               Container(child: Padding(
                 padding: const EdgeInsets.only(top:20.0),
                 child: DetailPost(),
-              ), height: 300),
+              ), height: 270),
               Row(
                 children: [
                   PicturePage(),
