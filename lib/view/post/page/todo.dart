@@ -1,7 +1,39 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_boddy/view/post/page/picture_page.dart';
 
+class Todo extends StatefulWidget {
+
+  @override
+  _TodoState createState() => _TodoState();
+  Todo(DocumentSnapshot doc) {
+    this.title = doc.data()["title"];
+    final Timestamp timestamp = doc.data()['createdAt'];
+    this.createdAt = timestamp.toDate();
+  }
+  String title;
+  DateTime createdAt;
+
+}
+
+
+class _TodoState extends State<Todo> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+
+
+
+/*
 class PostPreparation extends StatefulWidget {
+  PostPreparation (DocumentSnapshot doc) {
+
+
+}
   PostPreparation({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -101,4 +133,4 @@ class _PostPreparation extends State {
       ),
     );
   }
-}
+}*/

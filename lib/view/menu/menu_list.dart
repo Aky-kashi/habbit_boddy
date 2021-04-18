@@ -1,5 +1,5 @@
 import"package:flutter/material.dart";
-import 'package:habit_boddy/view/post/page/post_prepararion.dart';
+import 'package:habit_boddy/view/post/page/todo.dart';
 
 class MenuList extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class MenuList extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PostPreparation()),
+                    MaterialPageRoute(builder: (context) => null),
                   );}
 
             )

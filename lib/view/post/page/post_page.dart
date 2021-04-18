@@ -5,7 +5,7 @@ import 'package:habit_boddy/view/common/components/drop_text.dart';
 import 'package:habit_boddy/view/common/components/post_caption_part.dart';
 import 'package:habit_boddy/view/post/page/detail_page.dart';
 import 'package:habit_boddy/view/post/page/picture_page.dart';
-import 'package:habit_boddy/view/post/page/post_prepararion.dart';
+import 'package:habit_boddy/view/post/page/todo.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
 import 'package:provider/provider.dart';
 
