@@ -10,7 +10,7 @@ class ProfilePage extends StatelessWidget {
   final User selectedUser;
 
 
-  ProfilePage({this.profileMode, this.selectedUser});
+  ProfilePage({@required this.profileMode, this.selectedUser});
   @override
   Widget build(BuildContext context) {
     //これがあるのは当然。理由は、書き込まれた情報をDatabaseからとってこないと行けないから。

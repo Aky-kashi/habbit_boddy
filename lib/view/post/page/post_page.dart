@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:habit_boddy/component/post/task_add_button.dart';
 import 'package:habit_boddy/utils/constants.dart';
@@ -34,59 +35,62 @@ class _PostPageState extends State<PostPage> {
     _captionController.dispose();
     super.dispose();
   }
-  //TODOをインスタンス化する。
 
-  //Todo todo = Todo(doc: doc, title: title, model: model, createdAt: createdAt);
+  //TODOをインスタンス化する。
+  static DateTime createdAt;
+  static DocumentSnapshot doc;
+  static String title;
+  static ToDoViewModel model;
+  Todo todo = Todo(doc: doc, title: title, model: model, createdAt: createdAt);
 
 //モデルにデータを入れる。
   @override
   Widget build(BuildContext context) {
     final postViewModel = Provider.of<PostViewModel>(context);
     return ChangeNotifierProvider<ToDoViewModel>(
-        create:(_)=> ToDoViewModel()..getRealtime(),
-        child:Scaffold(
+      create: (_) => ToDoViewModel()..getRealtime(),
+      child: Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.amber,
-        actions: [
-          ElevatedButton(
-              child: Text('投稿する'),
+          backgroundColor: Colors.amber,
+          actions: [
+            ElevatedButton(
+                child: Text('投稿する'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.orange,
                   onPrimary: Colors.white,
                 ),
-              onPressed: () => showConfirmedDialog(
-                  context: context,
-                  title: "投稿",
-                  content: "投稿しても良いですか?",
-                  onConfirmed: (isConfirmed) {
-                    if (isConfirmed) {
-                      _post(context);
-                    }
-                  }))
-        ],
-      ),
-          body: Consumer<ToDoViewModel>(builder: (context,model,child){
-            final todoList = model.todoList;
-            return DropdownButton<Todo>(
-              items: todoList.map<DropdownMenuItem<Todo>>((Todo todo) {
-                return DropdownMenuItem<Todo>(
-                  value: Todo(title: todo.title),
-                  child: Text(todo.title),
-                );
-              }).toList(),
-            );
-          }),
-
-          floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              await Navigator.push(
+                onPressed: () => showConfirmedDialog(
+                    context: context,
+                    title: "投稿",
+                    content: "投稿しても良いですか?",
+                    onConfirmed: (isConfirmed) {
+                      if (isConfirmed) {
+                        _post(context);
+                      }
+                    }))
+          ],
+        ),
+        body: Consumer<ToDoViewModel>(builder: (context, model, child) {
+          final todoList = model.todoList;
+          return DropdownButton<Todo>(
+            items: todoList.map<DropdownMenuItem<Todo>>((Todo todo) {
+              return DropdownMenuItem<Todo>(
+                value: Todo(title: todo.title),
+                child: Text(todo.title),
+              );
+            }).toList(),
+          );
+        }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await Navigator.push(
               context,
-              MaterialPageRoute(
-              builder:(context) => TaskSetting()
-          ),
-        );},
-          child:Icon(Icons.add),),
-    ),
+              MaterialPageRoute(builder: (context) => TaskSetting()),
+            );
+          },
+          child: Icon(Icons.add),
+        ),
+      ),
     );
   }
 
@@ -101,8 +105,6 @@ class _PostPageState extends State<PostPage> {
   }
 }
 
-
-
 Widget build(BuildContext context) {
   final postViewModel = Provider.of<PostViewModel>(context);
   return Container(
@@ -114,50 +116,47 @@ Widget build(BuildContext context) {
             Row(
               children: [
                 Expanded(
-                  flex:3,
-                  child: Container(child: Padding(
-                    padding: const EdgeInsets.only(left:10.0),
-                    child: DropText(),
-                  ), height: 230),
+                  flex: 3,
+                  child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: DropText(),
+                      ),
+                      height: 230),
                 ),
                 Expanded(
-                    flex:1,
+                    flex: 1,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom:155.0),
+                      padding: const EdgeInsets.only(bottom: 155.0),
                       child: TaskAdd(),
                     )),
               ],
             ),
-
-            Container(child: Padding(
-              padding: const EdgeInsets.only(top:20.0),
-              child: DetailPost(),
-            ), height: 270),
+            Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: DetailPost(),
+                ),
+                height: 270),
             Row(
               children: [
                 PicturePage(),
                 postViewModel.imageFile == null
                     ? Container()
                     : Container(
-                  height: 60, width: 60,
-                  child: SingleChildScrollView(
-                    child: PostCaptionPart(
-                      from: PostCaptionOpenMode.FROM_POST,
-                    ),
-                  ),
-                )
+                        height: 60,
+                        width: 60,
+                        child: SingleChildScrollView(
+                          child: PostCaptionPart(
+                            from: PostCaptionOpenMode.FROM_POST,
+                          ),
+                        ),
+                      )
               ],
             ),
-
           ],
         ),
       ),
     ),
   );
 }
-
-
-
-
-
-

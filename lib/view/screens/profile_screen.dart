@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
   final User selectedUser;
 
 
-  ProfileScreen({this.profileMode, this.selectedUser});
+  ProfileScreen({@required this.profileMode, @required this.selectedUser});
   @override
   Widget build(BuildContext context) {
     return ProfilePage(
