@@ -1,24 +1,38 @@
 import "package:flutter/material.dart";
-import 'package:habit_boddy/view/post/page/post_preparation.dart';
-import 'package:habit_boddy/view/post/page/todo.dart';
+import 'package:habit_boddy/view/post/page/task_setting.dart';
+
+import 'package:habit_boddy/view_models/todo_view_model.dart';
+import 'package:provider/provider.dart';
 
 class TaskAdd extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 40.0,
 
-        child: FloatingActionButton.extended(
-            backgroundColor: Colors.grey[200],
+    return ChangeNotifierProvider<ToDoViewModel>(
+        create: (_) => ToDoViewModel()..getRealtime(),
+        child:SizedBox(
+            height: 40.0,
+            child: FloatingActionButton.extended(
+                backgroundColor: Colors.grey[200],
 
-            label: const Text('追加'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PostPreparation()),
-            );
-          }
+                label: const Text('追加'),
+                onPressed: () async{
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TaskSetting(),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                }
 
-        ));
+            ))
+
+    );
+
+
+
   }
+
+
 }

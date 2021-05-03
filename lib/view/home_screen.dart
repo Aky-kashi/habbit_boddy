@@ -5,7 +5,7 @@ import 'package:habit_boddy/utils/constants.dart';
 import 'package:habit_boddy/view/login/feed/pages/feed_page.dart';
 import 'package:habit_boddy/view/menu/menu_list.dart';
 import 'package:habit_boddy/view/post/page/post_page.dart';
-import 'package:habit_boddy/view/post/page/todo.dart';
+
 import 'package:habit_boddy/view/profile/pages/profile_page.dart';
 import 'package:habit_boddy/view/search/pages/search_page.dart';
 
@@ -66,6 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const FaIcon(FontAwesomeIcons.search), label: "search"),
             BottomNavigationBarItem(
                 icon: const FaIcon(FontAwesomeIcons.listOl), label: "ToDo"),
+            BottomNavigationBarItem(
+                icon: const FaIcon(FontAwesomeIcons.chartBar), label: "record"),
             BottomNavigationBarItem(
                 icon: const FaIcon(FontAwesomeIcons.user), label: "user")
           ]),

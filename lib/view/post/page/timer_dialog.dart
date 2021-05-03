@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//どのくらいの時間あるタスクに取り組むのかを設定する。
+//このクラスは、メインにはまだ入れていない。
+
 class Timer extends StatefulWidget {
   @override
   _TimerState createState() => _TimerState();

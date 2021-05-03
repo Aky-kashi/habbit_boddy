@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-//表示させるためのメソッド
+//投稿する際に確認するダイアログ
 showConfirmedDialog({
   @required BuildContext context,
   @required String title,

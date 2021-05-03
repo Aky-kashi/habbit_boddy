@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import"package:flutter/material.dart";
 
+//未使用このクラスはUIに反映していません。
+
 class Time extends StatefulWidget {
   @override
   _TimeState createState() => _TimeState();

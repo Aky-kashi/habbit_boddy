@@ -3,13 +3,16 @@ import 'package:habit_boddy/component/post/task_add_button.dart';
 import 'package:habit_boddy/utils/constants.dart';
 import 'package:habit_boddy/view/common/components/drop_text.dart';
 import 'package:habit_boddy/view/common/components/post_caption_part.dart';
+import 'package:habit_boddy/view/post/page/Todo.dart';
 import 'package:habit_boddy/view/post/page/detail_page.dart';
 import 'package:habit_boddy/view/post/page/picture_page.dart';
-import 'package:habit_boddy/view/post/page/todo.dart';
+import 'package:habit_boddy/view/post/page/task_setting.dart';
 import 'package:habit_boddy/view_models/post_view_model.dart';
+import 'package:habit_boddy/view_models/todo_view_model.dart';
 import 'package:provider/provider.dart';
-
 import 'confirm_dialog.dart';
+
+//投稿画面のメインの関数。
 
 class PostPage extends StatefulWidget {
   @override
@@ -18,7 +21,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final _captionController = TextEditingController();
-  List<String> _list = <String>['りんご', 'オレンジ', 'みかん', 'ぶどう'];
+
 
   @override
   void initState() {
@@ -31,12 +34,18 @@ class _PostPageState extends State<PostPage> {
     _captionController.dispose();
     super.dispose();
   }
+  //TODOをインスタンス化する。
 
+  //Todo todo = Todo(doc: doc, title: title, model: model, createdAt: createdAt);
+
+//モデルにデータを入れる。
   @override
   Widget build(BuildContext context) {
     final postViewModel = Provider.of<PostViewModel>(context);
-    return Scaffold(
-      appBar: AppBar(
+    return ChangeNotifierProvider<ToDoViewModel>(
+        create:(_)=> ToDoViewModel()..getRealtime(),
+        child:Scaffold(
+        appBar: AppBar(
         backgroundColor: Colors.amber,
         actions: [
           ElevatedButton(
@@ -56,53 +65,28 @@ class _PostPageState extends State<PostPage> {
                   }))
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    flex:3,
-                    child: Container(child: Padding(
-                      padding: const EdgeInsets.only(left:10.0),
-                      child: DropText(),
-                    ), height: 230),
-                  ),
-                  Expanded(
-                      flex:1,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom:155.0),
-                        child: TaskAdd(),
-                      )),
-                ],
-              ),
+          body: Consumer<ToDoViewModel>(builder: (context,model,child){
+            final todoList = model.todoList;
+            return DropdownButton<Todo>(
+              items: todoList.map<DropdownMenuItem<Todo>>((Todo todo) {
+                return DropdownMenuItem<Todo>(
+                  value: Todo(title: todo.title),
+                  child: Text(todo.title),
+                );
+              }).toList(),
+            );
+          }),
 
-              Container(child: Padding(
-                padding: const EdgeInsets.only(top:20.0),
-                child: DetailPost(),
-              ), height: 270),
-              Row(
-                children: [
-                  PicturePage(),
-                  postViewModel.imageFile == null
-                      ? Container()
-                      : Container(
-                    height: 60, width: 60,
-                    child: SingleChildScrollView(
-                      child: PostCaptionPart(
-                        from: PostCaptionOpenMode.FROM_POST,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
-            ],
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              await Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder:(context) => TaskSetting()
           ),
-        ),
-      ),
+        );},
+          child:Icon(Icons.add),),
+    ),
     );
   }
 
@@ -117,30 +101,63 @@ class _PostPageState extends State<PostPage> {
   }
 }
 
-List<String> _list = <String>['りんご', 'オレンジ', 'みかん', 'ぶどう'];
-String _text = '';
+
 
 Widget build(BuildContext context) {
+  final postViewModel = Provider.of<PostViewModel>(context);
   return Container(
-      padding: const EdgeInsets.all(50.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            "$_text",
-            style: TextStyle(
-                color: Colors.blueAccent,
-                fontSize: 30.0,
-                fontWeight: FontWeight.w500),
-          ),
-          DropdownButton<String>(
-            items: _list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-          ),
-        ],
-      ));
+    child: Padding(
+      padding: const EdgeInsets.all(40.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex:3,
+                  child: Container(child: Padding(
+                    padding: const EdgeInsets.only(left:10.0),
+                    child: DropText(),
+                  ), height: 230),
+                ),
+                Expanded(
+                    flex:1,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom:155.0),
+                      child: TaskAdd(),
+                    )),
+              ],
+            ),
 
+            Container(child: Padding(
+              padding: const EdgeInsets.only(top:20.0),
+              child: DetailPost(),
+            ), height: 270),
+            Row(
+              children: [
+                PicturePage(),
+                postViewModel.imageFile == null
+                    ? Container()
+                    : Container(
+                  height: 60, width: 60,
+                  child: SingleChildScrollView(
+                    child: PostCaptionPart(
+                      from: PostCaptionOpenMode.FROM_POST,
+                    ),
+                  ),
+                )
+              ],
+            ),
+
+          ],
+        ),
+      ),
+    ),
+  );
 }
+
+
+
+
+
+

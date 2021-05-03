@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
+//投稿画面の中で、ユーザーに詳細を記入してもらう。
 class DetailPost extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     final maxLines = 12;
@@ -15,7 +15,6 @@ class DetailPost extends StatelessWidget {
           fillColor: Colors.grey[200],
           filled: true,
           border: InputBorder.none,
-
         ),
       ),
     );
