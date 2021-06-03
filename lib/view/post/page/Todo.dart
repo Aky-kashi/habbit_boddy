@@ -1,14 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:habit_boddy/view_models/todo_view_model.dart';
 
-//Todoのフィールド
+
 class Todo {
+  Todo({@required this.title, this.model, this.createdAt});
   final ToDoViewModel model;
-  String title = "";
-  DateTime createdAt;
-  Todo({DocumentSnapshot doc, this.title, this.model, this.createdAt}){
-    this.title = doc.data()["title"];
-    final Timestamp timestamp = doc.data()['createdAt'];
-    this.createdAt = timestamp.toDate();
+  final String title ;
+  final DateTime createdAt;
+
+  static Todo fromDoc(DocumentSnapshot doc){
+    return Todo(createdAt: doc.data()['createdAt'], title: doc.data()["title"]);
   }
 }

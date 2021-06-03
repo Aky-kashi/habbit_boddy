@@ -11,6 +11,9 @@ class TaskSetting extends StatefulWidget {
 }
 
 class _PostPreparation extends State {
+  final ToDoViewModel model;
+  _PostPreparation({this.model});
+
   int _counter = 0;
   final myController = TextEditingController();
   final items = [];
@@ -30,8 +33,8 @@ class _PostPreparation extends State {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ToDoViewModel(),
+    return ChangeNotifierProvider<ToDoViewModel>.value(
+      value: model,
       child: Scaffold(
           appBar: AppBar(
             title: Center(child: Text('タスク設定')),

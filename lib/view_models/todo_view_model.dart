@@ -7,6 +7,7 @@ import 'package:habit_boddy/view/post/page/task_setting.dart';
 class ToDoViewModel extends ChangeNotifier {
   List<Todo>  todoList = [];
   String todoText = "";
+  ToDoViewModel({this.todoList});
 
 //リアルタイムでTodoが反映される。
   void getRealtime() {
@@ -14,7 +15,7 @@ class ToDoViewModel extends ChangeNotifier {
     FirebaseFirestore.instance.collection("todoList").snapshots();
     snapshots.listen((snapshot) {
       final docs = snapshot.docs;
-      final todoList = docs.map((doc) => Todo(doc: doc)).toList();
+      final todoList = docs.map((doc) => Todo.fromDoc(doc)).toList();
       this.todoList = todoList;
       notifyListeners();
 

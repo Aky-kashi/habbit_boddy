@@ -15,6 +15,7 @@ import 'confirm_dialog.dart';
 
 //投稿画面のメインの関数。
 
+
 class PostPage extends StatefulWidget {
   @override
   _PostPageState createState() => _PostPageState();
@@ -22,7 +23,7 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   final _captionController = TextEditingController();
-
+  DocumentSnapshot doc;
 
   @override
   void initState() {
@@ -36,19 +37,12 @@ class _PostPageState extends State<PostPage> {
     super.dispose();
   }
 
-  //TODOをインスタンス化する。
-  static DateTime createdAt;
-  static DocumentSnapshot doc;
-  static String title;
-  static ToDoViewModel model;
-  Todo todo = Todo(doc: doc, title: title, model: model, createdAt: createdAt);
 
 //モデルにデータを入れる。
   @override
   Widget build(BuildContext context) {
-    final postViewModel = Provider.of<PostViewModel>(context);
     return ChangeNotifierProvider<ToDoViewModel>(
-      create: (_) => ToDoViewModel()..getRealtime(),
+      create:(_) => ToDoViewModel()..getRealtime(),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.amber,
@@ -73,23 +67,26 @@ class _PostPageState extends State<PostPage> {
         body: Consumer<ToDoViewModel>(builder: (context, model, child) {
           final todoList = model.todoList;
           return DropdownButton<Todo>(
-            items: todoList.map<DropdownMenuItem<Todo>>((Todo todo) {
+            items: todoList?.map<DropdownMenuItem<Todo>>((Todo todo) {
               return DropdownMenuItem<Todo>(
-                value: Todo(title: todo.title),
+                value: Todo.fromDoc(doc),
                 child: Text(todo.title),
               );
-            }).toList(),
+            })?.toList() ?? [],
           );
         }),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TaskSetting()),
-            );
-          },
-          child: Icon(Icons.add),
-        ),
+        floatingActionButton:
+            Consumer<ToDoViewModel>(builder: (context, model, child) {
+          return FloatingActionButton(
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TaskSetting()),
+              );
+            },
+            child: Icon(Icons.add),
+          );
+        }),
       ),
     );
   }
