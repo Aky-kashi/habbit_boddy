@@ -11,8 +11,7 @@ class TaskSetting extends StatefulWidget {
 }
 
 class _PostPreparation extends State {
-  final ToDoViewModel model;
-  _PostPreparation({this.model});
+
 
   int _counter = 0;
   final myController = TextEditingController();
@@ -33,8 +32,8 @@ class _PostPreparation extends State {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ToDoViewModel>.value(
-      value: model,
+    return ChangeNotifierProvider<ToDoViewModel>(
+      create:(_)=> ToDoViewModel(),
       child: Scaffold(
           appBar: AppBar(
             title: Center(child: Text('タスク設定')),
@@ -52,6 +51,10 @@ class _PostPreparation extends State {
                       hintStyle: TextStyle(color: Colors.grey[300]),
                     ),
                     onChanged: (text) {
+                      //todotextがnullの場合returnを返す。
+                      if(model?.todoText == null){
+                        return;
+                      }
                       model.todoText = text;
                     }),
               ),
@@ -103,7 +106,10 @@ class _PostPreparation extends State {
                 _addItem(myController.text);
                 // テキストフィールドの内容をクリア
                 myController.clear();
-                await model.add();
+                print("test");
+                //firebaseに値を追加させる。
+                  //await model?.add();
+                  await model.add();
               },
               child: Icon(Icons.add),
             );

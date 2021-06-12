@@ -19,6 +19,7 @@ class TaskAdd extends StatelessWidget {
                 label: const Text('追加'),
                 onPressed: () async{
                   await Navigator.push(
+                    //TODO firestoreに値を追加する。
                     context,
                     MaterialPageRoute(builder: (context) => TaskSetting(),
                       fullscreenDialog: true,

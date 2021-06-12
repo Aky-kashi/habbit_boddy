@@ -66,6 +66,9 @@ class _PostPageState extends State<PostPage> {
         ),
         body: Consumer<ToDoViewModel>(builder: (context, model, child) {
           final todoList = model.todoList;
+          /*if (todoList == null){
+            return null;
+          }*/
           return DropdownButton<Todo>(
             items: todoList?.map<DropdownMenuItem<Todo>>((Todo todo) {
               return DropdownMenuItem<Todo>(
@@ -75,6 +78,7 @@ class _PostPageState extends State<PostPage> {
             })?.toList() ?? [],
           );
         }),
+        //ボタンを押すと、タスクを設定するページに遷移する。
         floatingActionButton:
             Consumer<ToDoViewModel>(builder: (context, model, child) {
           return FloatingActionButton(
@@ -91,12 +95,13 @@ class _PostPageState extends State<PostPage> {
     );
   }
 
+//テキストに記入すると動くメソッド
   _onCaptionUpdated() {
     final viewModel = Provider.of<PostViewModel>(context, listen: false);
     viewModel.caption = _captionController.text;
     print("caption: ${viewModel.caption}");
   }
-
+//imageFileを投稿すると動くメソッド
   void _post(BuildContext context) {
     final postViewModel = Provider.of<PostViewModel>(context, listen: false);
   }
@@ -113,42 +118,38 @@ Widget build(BuildContext context) {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
-                  child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: DropText(),
-                      ),
-                      height: 230),
+                  flex:3,
+                  child: Container(child: Padding(
+                    padding: const EdgeInsets.only(left:10.0),
+                    child: DropText(),
+                  ), height: 230),
                 ),
                 Expanded(
-                    flex: 1,
+                    flex:1,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 155.0),
+                      padding: const EdgeInsets.only(bottom:155.0),
                       child: TaskAdd(),
                     )),
               ],
             ),
-            Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: DetailPost(),
-                ),
-                height: 270),
+
+            Container(child: Padding(
+              padding: const EdgeInsets.only(top:20.0),
+              child: DetailPost(),
+            ), height: 270),
             Row(
               children: [
                 PicturePage(),
                 postViewModel.imageFile == null
                     ? Container()
                     : Container(
-                        height: 60,
-                        width: 60,
-                        child: SingleChildScrollView(
-                          child: PostCaptionPart(
-                            from: PostCaptionOpenMode.FROM_POST,
-                          ),
-                        ),
-                      )
+                  height: 60, width: 60,
+                  child: SingleChildScrollView(
+                    child: PostCaptionPart(
+                      from: PostCaptionOpenMode.FROM_POST,
+                    ),
+                  ),
+                )
               ],
             ),
           ],
@@ -157,3 +158,4 @@ Widget build(BuildContext context) {
     ),
   );
 }
+
