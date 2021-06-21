@@ -106,7 +106,7 @@ class _PostPreparation extends State {
                 _addItem(myController.text);
                 // テキストフィールドの内容をクリア
                 myController.clear();
-                print("test");
+                //print("test");
                 //firebaseに値を追加させる。
                   //await model?.add();
                   await model.add();
